@@ -1,0 +1,18 @@
+<ag-grid-angular
+  #agGrid
+  class="ag-theme-alpine"
+  id="foldersGrid"
+  [rowData]="treeRowData"
+  [modules]="modules"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [autoGroupColumnDef]="autoGroupColumnDef"
+  [treeData]="true"
+  [animateRows]="true"
+  [getDataPath]="getDataPath"
+  [getRowNodeId]="getRowNodeId"
+  [suppressContextMenu]="true"
+  (gridReady)="onGridReady($event)"
+  (rowClicked)="onRowClicked($event)"
+  [domLayout]="'autoHeight'"
+></ag-grid-angular>
