@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ITreeNode } from './tree-node';
-import { GridApi, ColDef, GridReadyEvent, RowClickedEvent } from 'ag-grid-community';
+import { GridApi, ColDef, GridReadyEvent, RowClickedEvent, RowNode } from 'ag-grid-community';
 import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import { appInitializerFactory } from "@angular/platform-browser/src/browser/server-transition";
 @Component({
     selector: 'tree-data',
     templateUrl: 'tree-data.component.html',
@@ -62,5 +63,22 @@ export class TreeDataComponent implements OnInit {
     }
 
     onRowClicked(event: RowClickedEvent): void {
+        const rowNode = event.node;
+        event.api.collapseAll();
+        const expand = rowNode.isSelected() ? !rowNode.expanded : true;
+
+        event.api.collapseAll();
+        this.expandAllParents(rowNode);
+        rowNode.expanded = expand;
+        rowNode.setSelected(true);
+        event.api.onGroupExpandedOrCollapsed();
     }
+
+    private expandAllParents(childNode: RowNode): void {
+        let parentNode = childNode.parent;
+        while (parentNode) {
+          parentNode.expanded = true;
+          parentNode = parentNode.parent;
+        }
+      }
 }
