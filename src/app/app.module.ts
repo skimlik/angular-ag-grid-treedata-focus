@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { AgGridModule } from 'ag-grid-angular';
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import { TreeDataComponent } from "./treeData/tree-data.component";
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, HelloComponent ],
+  imports:      [ BrowserModule, FormsModule, AgGridModule.withComponents([]) ],
+  declarations: [ AppComponent, TreeDataComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
