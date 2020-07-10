@@ -1,3 +1,10 @@
 :host {
     height: 100%;
+
+    ::ng-deep {
+        .ag-cell:focus {
+            outline: 4px solid #009efd;
+            background-color: #009efd;
+        }
+    }
 }
